@@ -1,0 +1,6 @@
+Ticker: XCNUSD
+Entry Price: 0.01744092
+Take Profit: 0.02049
+Stop Loss: 0.01342
+Position Size: 8027.0997
+Current Price: 0.01536

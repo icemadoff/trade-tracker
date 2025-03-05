@@ -1,0 +1,6 @@
+Ticker: AIRUSD
+Opened Date: 02/12/25
+Closed Date: 02/24/25
+Entry Price: 0.008468977
+Position Size: 6112.456395410
+Exit Price: 0.008710000

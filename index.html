@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kraken Trade Tracker</title>
+  <style>
+    body {
+      background-color: #1e1e2e;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #444444;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #3e3e5e;
+    }
+    tr:hover {
+      background-color: #2e2e3e;
+      cursor: pointer;
+    }
+    /* Context menu styling */
+    #contextMenu {
+      display: none;
+      position: absolute;
+      background-color: #3e3e5e;
+      border: 1px solid #444444;
+      z-index: 1000;
+      padding: 5px;
+    }
+    #contextMenu button {
+      background: none;
+      border: none;
+      color: #ffffff;
+      padding: 5px 10px;
+      text-align: left;
+      width: 100%;
+    }
+    #contextMenu button:hover {
+      background-color: #0078d7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kraken Trade Tracker</h1>
+  <table id="tradeTable">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Entry</th>
+        <th>Current Price</th>
+        <th>LIVE P/L %</th>
+        <th>LIVE P/L $</th>
+        <th>Distance to TP (%)</th>
+        <th>Distance to SL (%)</th>
+        <th>Equity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be populated via JavaScript -->
+    </tbody>
+  </table>
+  
+  <!-- Custom Context Menu -->
+  <div id="contextMenu">
+    <button id="editTrade">Edit Trade</button>
+    <button id="closeTrade">Close Trade</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

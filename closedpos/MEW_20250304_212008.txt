@@ -1,0 +1,6 @@
+Ticker: MEWUSD
+Opened Date: 02/19/25
+Closed Date: 02/20/25
+Entry Price: 0.002728000
+Position Size: 25659.824000000
+Exit Price: 0.002829000

@@ -1,0 +1,6 @@
+Ticker: JASMYUSD
+Entry Price: 0.0201
+Take Profit: 0.0215
+Stop Loss: 0.01392
+Position Size: 3482.58706467
+Current Price: 0.01719

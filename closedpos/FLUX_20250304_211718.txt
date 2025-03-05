@@ -1,0 +1,6 @@
+Ticker: FLUXUSD
+Opened Date: 02/16/25
+Closed Date: 02/16/25
+Entry Price: 0.446285151
+Position Size: 156.850390000
+Exit Price: 0.455010140

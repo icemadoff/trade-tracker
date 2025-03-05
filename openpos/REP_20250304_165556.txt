@@ -1,0 +1,6 @@
+Ticker: REPUSD
+Entry Price: 0.772
+Take Profit: 0.844
+Stop Loss: 0.585
+Position Size: 92.68230773
+Current Price: 0.764

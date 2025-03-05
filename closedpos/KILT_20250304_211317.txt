@@ -1,0 +1,6 @@
+Ticker: KILTUSD
+Opened Date: 02/12/25
+Closed Date: 02/13/25
+Entry Price: 0.087000000
+Position Size: 660.107586200
+Exit Price: 0.090000000

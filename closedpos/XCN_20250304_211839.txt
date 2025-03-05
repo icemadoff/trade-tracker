@@ -1,0 +1,6 @@
+Ticker: XCNUSD
+Opened Date: 02/17/25
+Closed Date: 02/22/25
+Entry Price: 0.021366986
+Position Size: 3790.895000000
+Exit Price: 0.022060000

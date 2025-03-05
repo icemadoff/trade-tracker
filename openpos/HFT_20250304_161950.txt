@@ -1,0 +1,6 @@
+Ticker: HFTUSD
+Entry Price: 0.081024097
+Take Profit: 0.0908
+Stop Loss: 0.0771
+Position Size: 671.03494
+Current Price: 0.0836

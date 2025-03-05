@@ -1,0 +1,6 @@
+Ticker: ALGOUSD
+Opened Date: 02/02/25
+Closed Date: 03/01/25
+Entry Price: 0.287631542
+Position Size: 526.263562060
+Exit Price: 0.228680000

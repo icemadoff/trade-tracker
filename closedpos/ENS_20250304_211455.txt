@@ -1,0 +1,6 @@
+Ticker: ENSUSD
+Opened Date: 02/14/25
+Closed Date: 02/17/25
+Entry Price: 27.636444444
+Position Size: 1.807034190
+Exit Price: 28.540000000

@@ -1,0 +1,6 @@
+Ticker: MKRUSD
+Opened Date: 02/26/25
+Closed Date: 02/26/25
+Entry Price: 1636.733289009
+Position Size: 0.046776100
+Exit Price: 1656.600000000

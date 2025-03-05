@@ -1,0 +1,6 @@
+Ticker: FTMUSD
+Opened Date: 01/26/25
+Closed Date: 02/03/25
+Entry Price: 0.528000000
+Position Size: 47.348484840
+Exit Price: 0.546800000

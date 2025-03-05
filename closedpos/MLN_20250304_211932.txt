@@ -1,0 +1,6 @@
+Ticker: MLNUSD
+Opened Date: 02/18/25
+Closed Date: 02/20/25
+Entry Price: 12.097000002
+Position Size: 5.786558650
+Exit Price: 12.684000000

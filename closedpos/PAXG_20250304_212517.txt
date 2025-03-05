@@ -1,0 +1,6 @@
+Ticker: PAXGUSD
+Opened Date: 02/26/25
+Closed Date: 02/26/25
+Entry Price: 2933.160000000
+Position Size: 0.023864880
+Exit Price: 2920.610000000

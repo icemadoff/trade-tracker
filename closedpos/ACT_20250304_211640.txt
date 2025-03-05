@@ -1,0 +1,6 @@
+Ticker: ACTUSD
+Opened Date: 02/14/25
+Closed Date: 02/21/25
+Entry Price: 0.189464347
+Position Size: 402.661510000
+Exit Price: 0.195600000

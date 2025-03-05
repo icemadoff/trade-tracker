@@ -1,0 +1,6 @@
+Ticker: DVRUSD
+Opened Date: 02/12/25
+Closed Date: 02/12/25
+Entry Price: 0.057900000
+Position Size: 998.467850000
+Exit Price: 0.059800000

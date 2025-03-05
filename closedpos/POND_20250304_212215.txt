@@ -1,0 +1,6 @@
+Ticker: PONDUSD
+Opened Date: 02/18/25
+Closed Date: 02/21/25
+Entry Price: 0.013083573
+Position Size: 6311.731500000
+Exit Price: 0.013353000

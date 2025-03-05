@@ -1,0 +1,6 @@
+Ticker: LPTUSD
+Opened Date: 02/27/25
+Closed Date: 03/02/25
+Entry Price: 7.038152612
+Position Size: 11.275686160
+Exit Price: 7.200000000

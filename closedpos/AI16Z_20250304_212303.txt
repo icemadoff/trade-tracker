@@ -1,0 +1,6 @@
+Ticker: AI16ZUSD
+Opened Date: 02/21/25
+Closed Date: 02/22/25
+Entry Price: 0.383945800
+Position Size: 179.736700000
+Exit Price: 0.401800000

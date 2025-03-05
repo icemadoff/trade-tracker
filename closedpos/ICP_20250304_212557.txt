@@ -1,0 +1,6 @@
+Ticker: ICPUSD
+Opened Date: 02/26/25
+Closed Date: 03/27/25
+Entry Price: 6.436667270
+Position Size: 10.875193180
+Exit Price: 6.593000000

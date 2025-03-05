@@ -1,0 +1,6 @@
+Ticker: HNTUSD
+Opened Date: 02/26/25
+Closed Date: 02/27/25
+Entry Price: 3.216044359
+Position Size: 24.036360000
+Exit Price: 3.310000000

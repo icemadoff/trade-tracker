@@ -1,0 +1,6 @@
+Ticker: BCHUSD
+Opened Date: 03/03/25
+Closed Date: 03/03/25
+Entry Price: 315.350000264
+Position Size: 0.253686380
+Exit Price: 329.000000000

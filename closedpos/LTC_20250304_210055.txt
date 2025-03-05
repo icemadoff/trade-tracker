@@ -1,0 +1,6 @@
+Ticker: LTCUSD
+Opened Date: 01/31/25
+Closed Date: 02/14/25
+Entry Price: 128.510000000
+Position Size: 0.498926910
+Exit Price: 130.750000000

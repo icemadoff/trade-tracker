@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trade Tracker</title>
+  <style>
+    body {
+      background-color: #1e1e2e;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    /* Navigation styles */
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .nav-buttons button {
+      background-color: rgb(135, 206, 235); /* Sky blue */
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .nav-buttons button:hover {
+      background-color: rgb(100, 180, 220);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #444444;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #3e3e5e;
+    }
+    tr:hover {
+      background-color: #2e2e3e;
+      cursor: pointer;
+    }
+    /* Context menu styling */
+    #contextMenu {
+      display: none;
+      position: absolute;
+      background-color: #3e3e5e;
+      border: 1px solid #444444;
+      z-index: 1000;
+      padding: 5px;
+    }
+    #contextMenu button {
+      background: none;
+      border: none;
+      color: #ffffff;
+      padding: 5px 10px;
+      text-align: left;
+      width: 100%;
+    }
+    #contextMenu button:hover {
+      background-color: #0078d7;
+    }
+    /* Summary styling */
+    #summary {
+      font-size: 14pt;
+      text-align: center;
+      margin-top: 10px;
+    }
+    /* Add Trade Button */
+    #addTradeBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgb(135, 206, 235); /* Sky blue */
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 15px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    #addTradeBtn:hover {
+      background-color: rgb(100, 180, 220);
+    }
+    /* Modal Styles (common for all modals) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background-color: #2e2e2e;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 400px;
+      border-radius: 8px;
+      color: #ffffff;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #3e3e5e;
+      color: #ffffff;
+    }
+    .modal-content label {
+      margin-bottom: 5px;
+      display: block;
+    }
+    .modal-content button {
+      background-color: rgb(135,206,235);
+      border: none;
+      padding: 10px 15px;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+    .modal-content button:hover {
+      background-color: rgb(100,180,220);
+    }
+    
+    /* Flash animations for updated rows */
+    @keyframes flashGreen {
+      0% { background-color: inherit; }
+      50% { background-color: #004400; }
+      100% { background-color: inherit; }
+    }
+    .flash-green {
+      animation: flashGreen 0.5s ease;
+    }
+
+    @keyframes flashRed {
+      0% { background-color: inherit; }
+      50% { background-color: #660000; }
+      100% { background-color: inherit; }
+    }
+    .flash-red {
+      animation: flashRed 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav-container">
+    <h1>Trade Tracker</h1>
+    <div class="nav-buttons">
+      <button onclick="window.location.href='index.html'">Trade Tracker</button>
+      <button onclick="window.location.href='closedTrades.html'">Closed Trades</button>
+      <button onclick="window.location.href='realizedProfits.html'">Deep Details</button>
+    </div>
+  </div>
+  
+  <!-- Main Table -->
+  <table id="tradeTable">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Entry</th>
+        <th>Current Price</th>
+        <th>LIVE P/L %</th>
+        <th>LIVE P/L $</th>
+        <th>Distance to TP (%)</th>
+        <th>Distance to SL (%)</th>
+        <th>Equity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be populated via JavaScript -->
+    </tbody>
+  </table>
+  
+  <!-- Summary information below the table -->
+  <div id="summary"></div>
+  
+  <!-- Custom Context Menu -->
+  <div id="contextMenu">
+    <button id="ctxEdit">Edit Trade</button>
+    <button id="ctxClose">Close Trade</button>
+  </div>
+  
+  <!-- Add Trade Button -->
+  <button id="addTradeBtn">Add Trade</button>
+  
+  <!-- Modal for Adding Trade -->
+  <div id="addTradeModal" class="modal">
+    <div class="modal-content">
+      <h2>Add New Trade</h2>
+      <form id="addTradeForm">
+        <label for="tickerInput">Ticker:</label>
+        <input type="text" id="tickerInput" name="ticker" placeholder="BTCUSD" required>
+        
+        <label for="entryInput">Entry Price:</label>
+        <input type="number" step="any" id="entryInput" name="entry" placeholder="90680.329169595" required>
+        
+        <label for="tpInput">Take Profit:</label>
+        <input type="number" step="any" id="tpInput" name="tp" placeholder="98289.6" required>
+        
+        <label for="slInput">Stop Loss:</label>
+        <input type="number" step="any" id="slInput" name="sl" placeholder="78082.7" required>
+        
+        <label for="sizeInput">Position Size:</label>
+        <input type="number" step="any" id="sizeInput" name="size" placeholder="0.00088222" required>
+        
+        <div style="text-align: right;">
+          <button type="submit">Submit Trade</button>
+          <button type="button" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Modal for Editing Trade -->
+  <div id="editTradeModal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Trade</h2>
+      <form id="editTradeForm">
+        <label for="editTicker">Ticker:</label>
+        <input type="text" id="editTicker" name="ticker" required>
+        
+        <label for="editEntry">Entry Price:</label>
+        <input type="number" step="any" id="editEntry" name="entry" required>
+        
+        <label for="editTP">Take Profit:</label>
+        <input type="number" step="any" id="editTP" name="tp" required>
+        
+        <label for="editSL">Stop Loss:</label>
+        <input type="number" step="any" id="editSL" name="sl" required>
+        
+        <label for="editSize">Position Size:</label>
+        <input type="number" step="any" id="editSize" name="size" required>
+        
+        <div style="text-align: right;">
+          <button type="submit">Save Changes</button>
+          <button type="button" id="cancelEditBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Modal for Closing Trade -->
+  <div id="closeTradeModal" class="modal">
+    <div class="modal-content">
+      <h2>Close Trade</h2>
+      <form id="closeTradeForm">
+        <label for="closeTicker">Ticker:</label>
+        <input type="text" id="closeTicker" name="ticker" disabled>
+        
+        <label for="closeEntry">Entry Price:</label>
+        <input type="number" step="any" id="closeEntry" name="entry" disabled>
+        
+        <label for="closeSize">Position Size:</label>
+        <input type="number" step="any" id="closeSize" name="size" disabled>
+        
+        <label for="closeExit">Exit Price:</label>
+        <input type="number" step="any" id="closeExit" name="exit" required>
+        
+        <div style="text-align: right;">
+          <button type="submit">Close Trade</button>
+          <button type="button" id="cancelCloseBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

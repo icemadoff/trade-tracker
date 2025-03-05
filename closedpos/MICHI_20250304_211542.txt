@@ -1,0 +1,6 @@
+Ticker: MICHIUSD
+Opened Date: 02/14/25
+Closed Date: 02/14/25
+Entry Price: 0.038847118
+Position Size: 1029.677410000
+Exit Price: 0.040200000
