@@ -4,8 +4,16 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const openTradesFolder = path.join(__dirname, 'openpos');
-const closedTradesFolder = path.join(__dirname, 'closedpos'); // New folder for closed trades
+const persistentPath = '/swinging';
+const openTradesFolder = path.join(persistentPath, 'openpos');
+const closedTradesFolder = path.join(persistentPath, 'closedpos');
+
+[openTradesFolder, closedTradesFolder].forEach(folder => {
+  if (!fs.existsSync(folder)) {
+    fs.mkdirSync(folder, { recursive: true });
+    console.log(`Created directory: ${folder}`);
+  }
+});
 
 // Parse JSON bodies
 app.use(express.json());
