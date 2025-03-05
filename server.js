@@ -225,6 +225,18 @@ app.post('/close-trade', (req, res) => {
   });
 });
 
+// New endpoint to serve starting balance
+app.get('/starting-balance', (req, res) => {
+  const balanceFilePath = path.join('S:\\webDoff\\balance', 'starting.txt');
+  fs.readFile(balanceFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading starting balance:', err);
+      return res.status(500).json({ error: 'Failed to read starting balance' });
+    }
+    return res.json({ balance: data.trim() });
+  });
+});
+
 
 // ----------------------------------------
 // Helper Functions

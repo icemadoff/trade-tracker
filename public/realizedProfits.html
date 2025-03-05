@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deep Details</title>
+  <style>
+    body {
+      background-color: #1e1e2e;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .nav-buttons button {
+      background-color: rgb(135, 206, 235);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .nav-buttons button:hover {
+      background-color: rgb(100, 180, 220);
+    }
+    .data-box {
+      background-color: #2e2e2e;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      border-bottom: 1px solid #444444;
+      padding-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav-container">
+    <h1>Deep Details</h1>
+    <div class="nav-buttons">
+      <button onclick="window.location.href='index.html'">Trade Tracker</button>
+      <button onclick="window.location.href='closedTrades.html'">Closed Trades</button>
+      <button onclick="window.location.href='realizedProfits.html'">Deep Details</button>
+    </div>
+  </div>
+  
+  <!-- Starting Balance -->
+  <div class="data-box">
+    <h2>Starting Balance</h2>
+    <div id="startingBalance">Loading...</div>
+  </div>
+  
+  <!-- Open Trades Summary -->
+  <div class="data-box">
+    <h2>Open Trades Summary</h2>
+    <div id="openTradesSummary">Loading...</div>
+  </div>
+  
+  <!-- Closed Trades Summary -->
+  <div class="data-box">
+    <h2>Closed Trades Summary</h2>
+    <div id="closedTradesSummary">Loading...</div>
+  </div>
+  
+  <script src="realizedProfits.js"></script>
+</body>
+</html>
