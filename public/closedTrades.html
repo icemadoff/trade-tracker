@@ -114,6 +114,46 @@
   <!-- Pagination Controls -->
   <div id="closedPagination"></div>
 
+  <!-- Existing closed trades table, pagination, etc. go here -->
+
+  <!-- Context Menu for Closed Trades -->
+  <div id="closedContextMenu" style="display:none; position:absolute; background-color:#3e3e5e; border:1px solid #444444; z-index:1000; padding:5px;">
+    <button id="closedCtxEdit">Edit Trade</button>
+    <button id="closedCtxDelete">Remove Trade</button>
+  </div>
+
+  <!-- Modal for Editing Closed Trade -->
+  <div id="editClosedTradeModal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Closed Trade</h2>
+      <form id="editClosedTradeForm">
+        <label for="editClosedTicker">Ticker:</label>
+        <input type="text" id="editClosedTicker" name="ticker" required>
+        
+        <label for="editClosedEntry">Entry Price:</label>
+        <input type="number" step="any" id="editClosedEntry" name="entry" required>
+        
+        <label for="editClosedSize">Position Size:</label>
+        <input type="number" step="any" id="editClosedSize" name="size" required>
+        
+        <label for="editClosedOpenedDate">Opened Date:</label>
+        <input type="text" id="editClosedOpenedDate" name="opened_date" required>
+        
+        <label for="editClosedExit">Exit Price:</label>
+        <input type="number" step="any" id="editClosedExit" name="exit" required>
+        
+        <label for="editClosedClosedDate">Closed Date:</label>
+        <input type="text" id="editClosedClosedDate" name="closed_date" required>
+        
+        <div style="text-align: right;">
+          <button type="submit">Save Changes</button>
+          <button type="button" id="cancelClosedEditBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
   <script src="closedTrades.js"></script>
 </body>
 </html>
+

@@ -131,6 +131,69 @@ app.get('/closed-trades', (req, res) => {
 });
 
 // ----------------------------------------
+// New Endpoint: Edit Closed Trade
+// ----------------------------------------
+app.post('/edit-closed-trade', (req, res) => {
+  const updatedTrade = req.body;
+  // Validate required fields
+  if (
+    !updatedTrade.ticker ||
+    !updatedTrade.entry ||
+    !updatedTrade.size ||
+    !updatedTrade.opened_date ||
+    !updatedTrade.exit ||
+    !updatedTrade.closed_date ||
+    !updatedTrade.filename
+  ) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  
+  // Ensure ticker is uppercase and ends with USD
+  let ticker = updatedTrade.ticker.toUpperCase();
+  if (!ticker.endsWith("USD")) {
+    ticker += "USD";
+  }
+  updatedTrade.ticker = ticker;
+  
+  // Rebuild the file content for a closed trade
+  const content =
+    `Ticker: ${updatedTrade.ticker}\n` +
+    `Entry Price: ${updatedTrade.entry}\n` +
+    `Position Size: ${updatedTrade.size}\n` +
+    `Opened Date: ${updatedTrade.opened_date}\n` +
+    `Exit Price: ${updatedTrade.exit}\n` +
+    `Closed Date: ${updatedTrade.closed_date}\n`;
+    
+  const filepath = path.join(closedTradesFolder, updatedTrade.filename);
+  fs.writeFile(filepath, content, 'utf8', err => {
+    if (err) {
+      console.error("Error editing closed trade file:", err);
+      return res.status(500).json({ error: 'Failed to edit closed trade file' });
+    }
+    return res.json({ message: 'Closed trade updated', filename: updatedTrade.filename });
+  });
+});
+
+// ----------------------------------------
+// New Endpoint: Delete Closed Trade
+// ----------------------------------------
+app.post('/delete-closed-trade', (req, res) => {
+  const data = req.body;
+  if (!data.filename) {
+    return res.status(400).json({ error: 'Missing filename' });
+  }
+  const filepath = path.join(closedTradesFolder, data.filename);
+  fs.unlink(filepath, (err) => {
+    if (err) {
+      console.error("Error deleting closed trade file:", err);
+      return res.status(500).json({ error: 'Failed to delete closed trade file' });
+    }
+    return res.json({ message: 'Closed trade deleted successfully' });
+  });
+});
+
+
+// ----------------------------------------
 // New Endpoint: Edit Trade
 // ----------------------------------------
 app.post('/edit-trade', (req, res) => {
