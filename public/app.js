@@ -363,4 +363,4 @@ addTradeForm.addEventListener("submit", async function(e) {
 // Load open trades when the app starts.
 document.addEventListener("DOMContentLoaded", loadOpenTrades);
 // Update current prices periodically.
-setInterval(updatePrices, 1000);
+setInterval(updatePrices, 2000);
