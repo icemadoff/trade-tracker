@@ -227,7 +227,7 @@ app.post('/close-trade', (req, res) => {
 
 // New endpoint to serve starting balance
 app.get('/starting-balance', (req, res) => {
-  const balanceFilePath = path.join('S:\\webDoff\\balance', 'starting.txt');
+  const balanceFilePath = path.join(__dirname, 'balance', 'starting.txt');
   fs.readFile(balanceFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading starting balance:', err);
