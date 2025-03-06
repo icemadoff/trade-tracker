@@ -148,6 +148,7 @@ function formatNumber(value, precision = 2) {
 
 // =======================
 // Context Menu Implementation for Closed Trades
+// (Uses same colors and style as the Trade Tracker context menu)
 // =======================
 const closedContextMenu = document.getElementById("closedContextMenu");
 let selectedClosedTradeIndex = null;
@@ -171,6 +172,7 @@ document.addEventListener("click", function(e) {
 
 // =======================
 // Edit Closed Trade Modal Handling
+// (Modal is hidden until the user selects "Edit Trade" from the context menu)
 // =======================
 const editClosedTradeModal = document.getElementById("editClosedTradeModal");
 const editClosedTradeForm = document.getElementById("editClosedTradeForm");
