@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Responsive meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trade Tracker</title>
   <style>
     body {
@@ -80,7 +82,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: rgb(135, 206, 235); /* Sky blue */
+      background-color: rgb(135, 206, 235);
       color: #ffffff;
       border: none;
       border-radius: 5px;
@@ -94,7 +96,7 @@
     }
     /* Modal Styles (common for all modals) */
     .modal {
-      display: none; /* Hidden by default */
+      display: none;
       position: fixed;
       z-index: 2000;
       left: 0;
@@ -139,7 +141,6 @@
     .modal-content button:hover {
       background-color: rgb(100,180,220);
     }
-    
     /* Flash animations for updated rows */
     @keyframes flashGreen {
       0% { background-color: inherit; }
@@ -149,7 +150,6 @@
     .flash-green {
       animation: flashGreen 0.4s ease;
     }
-
     @keyframes flashRed {
       0% { background-color: inherit; }
       30% { background-color: #6b4545; }
@@ -157,6 +157,29 @@
     }
     .flash-red {
       animation: flashRed 0.4s ease;
+    }
+    /* Responsive design for mobile devices */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+        font-size: 14px;
+      }
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-buttons {
+        margin-top: 10px;
+      }
+      table, th, td {
+        font-size: 12px;
+      }
+      #addTradeBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>

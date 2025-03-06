@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Responsive meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Closed Trades</title>
   <style>
     body {
@@ -75,47 +77,60 @@
       border-radius: 5px;
       background-color: #2e2e2e;
     }
+    /* Modal styles */
+    .modal {
+      display: none; /* Hide by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background-color: #2e2e2e;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 400px;
+      border-radius: 8px;
+      color: #ffffff;
+    }
+    /* Ensure each label and input take up full width */
+    .modal-content label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .modal-content input {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #3e3e5e;
+      color: #ffffff;
+    }
+    /* Responsive design for mobile devices */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+        font-size: 14px;
+      }
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-buttons {
+        margin-top: 10px;
+      }
+      table, th, td {
+        font-size: 12px;
+      }
+    }
   </style>
-<style>
-  /* Modal styles */
-  .modal {
-    display: none; /* Hide by default */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-  }
-  .modal-content {
-    background-color: #2e2e2e;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 400px;
-    border-radius: 8px;
-    color: #ffffff;
-  }
-  /* Ensure each label and input take up full width */
-  .modal-content label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  .modal-content input {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0 15px;
-    border: 1px solid #555;
-    border-radius: 4px;
-    background-color: #3e3e5e;
-    color: #ffffff;
-  }
-</style>
-
-
 </head>
 <body>
   <!-- Navigation -->
@@ -154,37 +169,29 @@
   <!-- Pagination Controls -->
   <div id="closedPagination"></div>
 
-  <!-- Existing closed trades table, pagination, etc. go here -->
-
-    <!-- Context Menu for Closed Trades (styled like the Trade Tracker context menu) -->
+  <!-- Context Menu for Closed Trades -->
   <div id="closedContextMenu" style="display: none; position: absolute; background-color: #3e3e5e; border: 1px solid #444444; z-index: 1000; padding: 5px;">
     <button id="closedCtxEdit" style="background: none; border: none; color: #ffffff; padding: 5px 10px; text-align: left; width: 100%;">Edit Trade</button>
     <button id="closedCtxDelete" style="background: none; border: none; color: #ffffff; padding: 5px 10px; text-align: left; width: 100%;">Remove Trade</button>
   </div>
 
-  <!-- Modal for Editing Closed Trade (formatted like the Trade Tracker edit modal) -->
+  <!-- Modal for Editing Closed Trade -->
   <div id="editClosedTradeModal" class="modal">
     <div class="modal-content">
       <h2>Edit Closed Trade</h2>
       <form id="editClosedTradeForm">
         <label for="editClosedTicker">Ticker:</label>
         <input type="text" id="editClosedTicker" name="ticker" required>
-
         <label for="editClosedEntry">Entry Price:</label>
         <input type="number" step="any" id="editClosedEntry" name="entry" required>
-
         <label for="editClosedSize">Position Size:</label>
         <input type="number" step="any" id="editClosedSize" name="size" required>
-
         <label for="editClosedOpenedDate">Opened Date:</label>
         <input type="text" id="editClosedOpenedDate" name="opened_date" required>
-
         <label for="editClosedExit">Exit Price:</label>
         <input type="number" step="any" id="editClosedExit" name="exit" required>
-
         <label for="editClosedClosedDate">Closed Date:</label>
         <input type="text" id="editClosedClosedDate" name="closed_date" required>
-
         <div style="text-align: right;">
           <button type="submit">Save Changes</button>
           <button type="button" id="cancelClosedEditBtn">Cancel</button>
