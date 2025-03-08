@@ -71,8 +71,7 @@ function renderClosedTrades() {
     let fee = trade.exit * trade.size * 0.004;
     // Net profit for this trade
     let netProfit = profit - fee;
-	
-	let profitPercentage = (netProfit / (trade.entry * trade.size)) * 100;
+    let profitPercentage = (netProfit / (trade.entry * trade.size)) * 100;
 
     let row = document.createElement("tr");
     // Save the overall index (across all closedTrades) for later reference
@@ -85,11 +84,38 @@ function renderClosedTrades() {
       <td>${formatNumber(trade.size)}</td>
       <td>${formatNumber(trade.exit)}</td>
       <td>$${parseFloat(netProfit).toFixed(2)}</td>
-	  <td>${parseFloat(profitPercentage).toFixed(2)}%</td>
+      <td>${parseFloat(profitPercentage).toFixed(2)}%</td>
       <td>${duration}</td>
       <td>$${parseFloat(fee).toFixed(2)}</td>
     `;
     tbody.appendChild(row);
+  });
+
+  // After rendering the rows, add long-press listeners for mobile devices.
+  addLongPressListeners();
+}
+
+// Function to add long-press event listeners on mobile for the closed trades table
+function addLongPressListeners() {
+  document.querySelectorAll("#closedTradeTable tbody tr").forEach(row => {
+    let longPressTimer;
+    row.addEventListener("touchstart", (e) => {
+      longPressTimer = setTimeout(() => {
+        // Get the first touch point
+        const touch = e.touches[0];
+        // Set the selected closed trade index and show the context menu
+        selectedClosedTradeIndex = row.dataset.index;
+        closedContextMenu.style.top = `${touch.pageY}px`;
+        closedContextMenu.style.left = `${touch.pageX}px`;
+        closedContextMenu.style.display = "block";
+      }, 600); // Adjust time (ms) as needed
+    });
+    row.addEventListener("touchend", () => {
+      clearTimeout(longPressTimer);
+    });
+    row.addEventListener("touchmove", () => {
+      clearTimeout(longPressTimer);
+    });
   });
 }
 
@@ -243,7 +269,6 @@ function sortClosedTrades(index) {
   renderClosedTrades();
   renderPagination();
 }
-
 
 // Attach click events to table header cells for sorting
 document.querySelectorAll("#closedTradeTable th").forEach((th, index) => {
