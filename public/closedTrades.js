@@ -72,7 +72,7 @@ function renderClosedTrades() {
     // Net profit for this trade
     let netProfit = profit - fee;
 	
-	let profitPercentage = (netProfit / (trade.entry * trade.size) * 100;
+	let profitPercentage = (netProfit / (trade.entry * trade.size)) * 100;
 
     let row = document.createElement("tr");
     // Save the overall index (across all closedTrades) for later reference
