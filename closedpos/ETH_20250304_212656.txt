@@ -1,6 +1,0 @@
-Ticker: ETHUSD
-Opened Date: 02/26/25
-Closed Date: 03/02/25
-Entry Price: 2344.644184820
-Position Size: 0.032414300
-Exit Price: 2395.910000000

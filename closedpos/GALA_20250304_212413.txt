@@ -1,6 +1,0 @@
-Ticker: GALAUSD
-Opened Date: 02/24/25
-Closed Date: 03/02/25
-Entry Price: 0.020900000
-Position Size: 3349.282296650
-Exit Price: 0.022300000

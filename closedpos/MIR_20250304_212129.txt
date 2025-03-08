@@ -1,6 +1,0 @@
-Ticker: MIRUSD
-Opened Date: 02/19/25
-Closed Date: 02/20/25
-Entry Price: 0.019867830
-Position Size: 3523.283660000
-Exit Price: 0.020400000

@@ -1,6 +1,0 @@
-Ticker: PEPEUSD
-Entry Price: 0.000012888
-Take Profit: 0.000013275
-Stop Loss: 0.000005971
-Position Size: 4277531.99
-Current Price: 0.00000694

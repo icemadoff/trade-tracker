@@ -1,6 +1,0 @@
-Ticker: PEPEUSD
-Opened Date: 01/22/25
-Closed Date: 02/03/25
-Entry Price: 0.000015120
-Position Size: 1653439.153400000
-Exit Price: 0.000015470

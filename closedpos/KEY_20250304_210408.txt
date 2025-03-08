@@ -1,6 +1,0 @@
-Ticker: KEYUSD
-Opened Date: 02/05/25
-Closed Date: 02/05/25
-Entry Price: 0.000708772
-Position Size: 73775.495050000
-Exit Price: 0.000731000

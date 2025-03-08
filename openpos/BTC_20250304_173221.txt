@@ -1,6 +1,0 @@
-Ticker: BTCUSD
-Entry Price: 90680.329169595
-Take Profit: 98289.6
-Stop Loss: 78082.7
-Position Size: 0.00088222
-Current Price: 88641.6

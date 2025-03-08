@@ -179,7 +179,6 @@ function updateClosedSummary() {
 // ---------------------
 
 function sortClosedTrades(index) {
-  // Toggle sort order if the same column is clicked; otherwise set to ascending.
   if (closedSort.column === index) {
     closedSort.order = closedSort.order === 'asc' ? 'desc' : 'asc';
   } else {
@@ -218,11 +217,15 @@ function sortClosedTrades(index) {
         aValue = (a.exit - a.entry) * a.size;
         bValue = (b.exit - b.entry) * b.size;
         break;
-      case 7: // Duration (in days)
+      case 7: // % Profit: (((exit-entry)*size - fee) / (entry*size)) * 100
+        aValue = (((a.exit - a.entry) * a.size) - (a.exit * a.size * 0.004)) / (a.entry * a.size) * 100;
+        bValue = (((b.exit - b.entry) * b.size) - (b.exit * b.size * 0.004)) / (b.entry * b.size) * 100;
+        break;
+      case 8: // Duration (in days)
         aValue = computeDuration(a.opened_date, a.closed_date);
         bValue = computeDuration(b.opened_date, b.closed_date);
         break;
-      case 8: // Fees: exit * size * 0.004
+      case 9: // Fees: exit * size * 0.004
         aValue = a.exit * a.size * 0.004;
         bValue = b.exit * b.size * 0.004;
         break;
@@ -240,6 +243,7 @@ function sortClosedTrades(index) {
   renderClosedTrades();
   renderPagination();
 }
+
 
 // Attach click events to table header cells for sorting
 document.querySelectorAll("#closedTradeTable th").forEach((th, index) => {

@@ -1,6 +1,0 @@
-Ticker: OPUSD
-Entry Price: 1.119257205
-Take Profit: 1.1943
-Stop Loss: 0.7871
-Position Size: 142.95195
-Current Price: 0.9622

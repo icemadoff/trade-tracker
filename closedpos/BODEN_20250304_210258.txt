@@ -1,6 +1,0 @@
-Ticker: BODENUSD
-Opened Date: 02/05/25
-Closed Date: 02/05/25
-Entry Price: 0.003815000
-Position Size: 13105.263160000
-Exit Price: 0.004000000

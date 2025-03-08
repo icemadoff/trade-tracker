@@ -1,6 +1,0 @@
-Ticker: FWOGUSD
-Opened Date: 02/05/25
-Closed Date: 02/06/25
-Entry Price: 0.081124499
-Position Size: 663.178210000
-Exit Price: 0.083800000
