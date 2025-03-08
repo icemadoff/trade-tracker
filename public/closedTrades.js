@@ -28,7 +28,9 @@ function formatNumber(value) {
   let formatted = parseFloat(value).toFixed(9);
   return formatted.replace(/\.?0+$/, '');
 }
-
+function formatNumber2(value) {
+  let formatted = parseFloat(value).toFixed(2);
+}
 // ---------------------
 // Data Loading & Rendering
 // ---------------------
@@ -82,7 +84,7 @@ function renderClosedTrades() {
       <td>${formatNumber(trade.entry)}</td>
       <td>${formatNumber(trade.size)}</td>
       <td>${formatNumber(trade.exit)}</td>
-      <td>$${formatNumber(netProfit)}</td>
+      <td>$${formatNumber2(netProfit)}</td>
       <td>${duration}</td>
       <td>$${formatNumber(fee)}</td>
     `;
