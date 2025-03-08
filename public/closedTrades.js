@@ -85,7 +85,7 @@ function renderClosedTrades() {
       <td>${formatNumber(trade.size)}</td>
       <td>${formatNumber(trade.exit)}</td>
       <td>$${parseFloat(netProfit).toFixed(2)}</td>
-	  <td>${profitPercentage.toFixed(2)}%</td>
+	  <td>${parseFloat(profitPercentage).toFixed(2)}%</td>
       <td>${duration}</td>
       <td>$${parseFloat(fee).toFixed(2)}</td>
     `;
