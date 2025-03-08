@@ -142,7 +142,7 @@ function updateClosedSummary() {
 }
 
 // Utility function to format numbers (default 2 decimal places)
-function formatNumber(value, precision = 2) {
+function formatNumber(value, precision = 9) {
   return parseFloat(value).toFixed(precision);
 }
 
