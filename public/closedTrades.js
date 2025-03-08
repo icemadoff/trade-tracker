@@ -71,6 +71,8 @@ function renderClosedTrades() {
     let fee = trade.exit * trade.size * 0.004;
     // Net profit for this trade
     let netProfit = profit - fee;
+	
+	let profitPercentage = (netProfit / (trade.entry * trade.size) * 100;
 
     let row = document.createElement("tr");
     // Save the overall index (across all closedTrades) for later reference
@@ -83,6 +85,7 @@ function renderClosedTrades() {
       <td>${formatNumber(trade.size)}</td>
       <td>${formatNumber(trade.exit)}</td>
       <td>$${parseFloat(netProfit).toFixed(2)}</td>
+	  <td>${profitPercentage.toFixed(2)}%</td>
       <td>${duration}</td>
       <td>$${parseFloat(fee).toFixed(2)}</td>
     `;
