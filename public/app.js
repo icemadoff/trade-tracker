@@ -7,9 +7,16 @@ let currentSort = { column: null, order: 'asc' };
 // Function to load open trades from the server endpoint (/open-trades)
 async function loadOpenTrades() {
   try {
+    // Show a loading indicator in the table while fetching data
+    const tbody = document.querySelector("#tradeTable tbody");
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; font-size:80px;">Loading...</td></tr>';
+
     const response = await fetch('/open-trades');
     trades = await response.json();
-    updateTable(); // Populate the table initially
+
+    // Wait for live price updates before rendering the table
+    await updatePrices(); 
+    // updatePrices() calls updateTable() after updating the prices
   } catch (error) {
     console.error("Error loading open trades:", error);
   }
@@ -30,6 +37,30 @@ function formatNumber9(value) {
 function updateTable() {
   const tbody = document.querySelector("#tradeTable tbody");
   tbody.innerHTML = ""; // Clear existing rows
+  
+  // Function to add long press listeners for mobile devices
+  function addLongPressListeners() {
+    document.querySelectorAll("#tradeTable tbody tr").forEach(row => {
+      let longPressTimer;
+      row.addEventListener("touchstart", (e) => {
+        longPressTimer = setTimeout(() => {
+          // Get the first touch point
+          const touch = e.touches[0];
+          // Set the selected trade index and show the context menu
+          selectedTradeIndex = row.dataset.index;
+          contextMenu.style.top = `${touch.pageY}px`;
+          contextMenu.style.left = `${touch.pageX}px`;
+          contextMenu.style.display = "block";
+        }, 600); // Adjust time (ms) as needed
+      });
+      row.addEventListener("touchend", () => {
+        clearTimeout(longPressTimer);
+      });
+      row.addEventListener("touchmove", () => {
+        clearTimeout(longPressTimer);
+      });
+    });
+  }
 
   trades.forEach((trade, index) => {
     // Calculate metrics:
@@ -67,6 +98,9 @@ function updateTable() {
 
   // After updating the table, update the summary below it.
   updateSummary();
+
+  // Call the long press listeners function so mobile users can trigger the context menu.
+  addLongPressListeners();
 }
 
 // Function to update the summary information below the table.
