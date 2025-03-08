@@ -65,7 +65,7 @@ function renderClosedTrades() {
       let openDate = new Date(`20${openYear}`, openMonth - 1, openDay);
       let closeDate = new Date(`20${closeYear}`, closeMonth - 1, closeDay);
       let diffTime = Math.abs(closeDate - openDate);
-      duration = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + "d";
+      duration = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
     // Calculate fees (fee rate = 0.004)
     let fee = trade.exit * trade.size * 0.004;
