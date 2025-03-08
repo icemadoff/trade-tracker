@@ -142,9 +142,11 @@ function updateClosedSummary() {
 }
 
 // Utility function to format numbers (default 2 decimal places)
-function formatNumber(value, precision = 9) {
-  return parseFloat(value).toFixed(precision);
+function formatNumber(value) {
+  let formatted = parseFloat(value).toFixed(9);
+  return formatted.replace(/\.?0+$/, '');
 }
+
 
 // =======================
 // Context Menu Implementation for Closed Trades
