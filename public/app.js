@@ -51,7 +51,7 @@ function updateTable() {
           contextMenu.style.top = `${touch.pageY}px`;
           contextMenu.style.left = `${touch.pageX}px`;
           contextMenu.style.display = "block";
-        }, 600); // Adjust time (ms) as needed
+        }, 300); // Adjust time (ms) as needed
       });
       row.addEventListener("touchend", () => {
         clearTimeout(longPressTimer);
