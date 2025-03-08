@@ -23,6 +23,7 @@ function formatNumber(value, precision = 2) {
 // Utility function to format numbers with 9 decimal places and trim trailing zeros
 function formatNumber9(value) {
   let formatted = parseFloat(value).toFixed(9);
+  return formatted.replace(/\.?0+$/, '');
 }
 
 // Function to update the HTML table with trade data and calculated fields.
