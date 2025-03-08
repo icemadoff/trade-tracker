@@ -3,6 +3,36 @@ let closedTrades = [];
 let currentPage = 0;
 const pageSize = 15;
 
+// Global sort state for closed trades
+let closedSort = { column: null, order: 'asc' };
+
+// Helper function to parse a date in MM/DD/YY format
+function parseDate(dateStr) {
+  const parts = dateStr.split('/');
+  if (parts.length !== 3) return new Date(0);
+  const month = parseInt(parts[0], 10);
+  const day = parseInt(parts[1], 10);
+  const year = parseInt(parts[2], 10);
+  return new Date(2000 + year, month - 1, day);
+}
+
+// Helper function to compute duration (in days) from opened and closed dates
+function computeDuration(opened, closed) {
+  const openDate = parseDate(opened);
+  const closeDate = parseDate(closed);
+  return (closeDate - openDate) / (1000 * 60 * 60 * 24);
+}
+
+// Utility function to format numbers (default 2 decimal places, trimming extra zeros)
+function formatNumber(value) {
+  let formatted = parseFloat(value).toFixed(9);
+  return formatted.replace(/\.?0+$/, '');
+}
+
+// ---------------------
+// Data Loading & Rendering
+// ---------------------
+
 // Function to load closed trades from the server endpoint
 async function loadClosedTrades() {
   try {
@@ -141,17 +171,83 @@ function updateClosedSummary() {
   document.getElementById("closedSummary").innerHTML = summaryHTML;
 }
 
-// Utility function to format numbers (default 2 decimal places)
-function formatNumber(value) {
-  let formatted = parseFloat(value).toFixed(9);
-  return formatted.replace(/\.?0+$/, '');
+// ---------------------
+// Sorting Functionality
+// ---------------------
+
+function sortClosedTrades(index) {
+  // Toggle sort order if the same column is clicked; otherwise set to ascending.
+  if (closedSort.column === index) {
+    closedSort.order = closedSort.order === 'asc' ? 'desc' : 'asc';
+  } else {
+    closedSort.column = index;
+    closedSort.order = 'asc';
+  }
+  
+  closedTrades.sort((a, b) => {
+    let aValue, bValue;
+    switch(index) {
+      case 0: // Ticker
+        aValue = a.ticker.toUpperCase();
+        bValue = b.ticker.toUpperCase();
+        break;
+      case 1: // Opened Date
+        aValue = parseDate(a.opened_date);
+        bValue = parseDate(b.opened_date);
+        break;
+      case 2: // Closed Date
+        aValue = parseDate(a.closed_date);
+        bValue = parseDate(b.closed_date);
+        break;
+      case 3: // Entry Price
+        aValue = a.entry;
+        bValue = b.entry;
+        break;
+      case 4: // Position Size
+        aValue = a.size;
+        bValue = b.size;
+        break;
+      case 5: // Exit Price
+        aValue = a.exit;
+        bValue = b.exit;
+        break;
+      case 6: // Profit: (exit - entry) * size
+        aValue = (a.exit - a.entry) * a.size;
+        bValue = (b.exit - b.entry) * b.size;
+        break;
+      case 7: // Duration (in days)
+        aValue = computeDuration(a.opened_date, a.closed_date);
+        bValue = computeDuration(b.opened_date, b.closed_date);
+        break;
+      case 8: // Fees: exit * size * 0.004
+        aValue = a.exit * a.size * 0.004;
+        bValue = b.exit * b.size * 0.004;
+        break;
+      default:
+        aValue = '';
+        bValue = '';
+    }
+    if (aValue < bValue) return closedSort.order === 'asc' ? -1 : 1;
+    if (aValue > bValue) return closedSort.order === 'asc' ? 1 : -1;
+    return 0;
+  });
+  
+  // Reset to the first page after sorting
+  currentPage = 0;
+  renderClosedTrades();
+  renderPagination();
 }
 
+// Attach click events to table header cells for sorting
+document.querySelectorAll("#closedTradeTable th").forEach((th, index) => {
+  th.style.cursor = 'pointer';
+  th.addEventListener('click', () => sortClosedTrades(index));
+});
 
-// =======================
-// Context Menu Implementation for Closed Trades
-// (Uses same colors and style as the Trade Tracker context menu)
-// =======================
+// ---------------------
+// Context Menu & Modal for Editing/Deleting Closed Trades
+// ---------------------
+
 const closedContextMenu = document.getElementById("closedContextMenu");
 let selectedClosedTradeIndex = null;
 
@@ -172,10 +268,7 @@ document.addEventListener("click", function(e) {
   }
 });
 
-// =======================
 // Edit Closed Trade Modal Handling
-// (Modal is hidden until the user selects "Edit Trade" from the context menu)
-// =======================
 const editClosedTradeModal = document.getElementById("editClosedTradeModal");
 const editClosedTradeForm = document.getElementById("editClosedTradeForm");
 const cancelClosedEditBtn = document.getElementById("cancelClosedEditBtn");
@@ -228,9 +321,7 @@ editClosedTradeForm.addEventListener("submit", async function(e) {
   }
 });
 
-// =======================
 // Remove Closed Trade Handling
-// =======================
 document.getElementById("closedCtxDelete").addEventListener("click", async function() {
   closedContextMenu.style.display = "none";
   if (selectedClosedTradeIndex !== null) {
@@ -254,5 +345,7 @@ document.getElementById("closedCtxDelete").addEventListener("click", async funct
   }
 });
 
-// When the page content is loaded, load the closed trades
+// ---------------------
+// Initial Data Load
+// ---------------------
 document.addEventListener("DOMContentLoaded", loadClosedTrades);
