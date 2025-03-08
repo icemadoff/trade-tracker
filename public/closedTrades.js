@@ -82,9 +82,9 @@ function renderClosedTrades() {
       <td>${formatNumber(trade.entry)}</td>
       <td>${formatNumber(trade.size)}</td>
       <td>${formatNumber(trade.exit)}</td>
-      <td>$${formatNumber(netProfit)}</td>
+      <td>$${parseFloat(netProfit).toFixed(2)}</td>
       <td>${duration}</td>
-      <td>$${formatNumber(fee)}</td>
+      <td>$${parseFloat(fee).toFixed(2)}</td>
     `;
     tbody.appendChild(row);
   });
