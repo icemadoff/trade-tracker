@@ -108,7 +108,7 @@ function addLongPressListeners() {
         closedContextMenu.style.top = `${touch.pageY}px`;
         closedContextMenu.style.left = `${touch.pageX}px`;
         closedContextMenu.style.display = "block";
-      }, 600); // Adjust time (ms) as needed
+      }, 300); // Adjust time (ms) as needed
     });
     row.addEventListener("touchend", () => {
       clearTimeout(longPressTimer);
